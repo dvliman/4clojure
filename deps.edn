@@ -1,14 +1,9 @@
 {:paths ["src" "resources"]
  :deps {org.clojure/clojure {:mvn/version "1.10.3"}}
  :aliases
- {:run-m {:main-opts ["-m" "dvliman.forclojure"]}
-  :run-x {:ns-default dvliman.forclojure
-          :exec-fn greet
-          :exec-args {:name "Clojure"}}
+ {:run-main {:main-opts ["-m" "dvliman.forclojure"]}
   :build {:deps {io.github.seancorfield/build-clj
                  {:git/tag "v0.6.3" :git/sha "9b8e09b"
-                  ;; since we're building an app uberjar, we do not
-                  ;; need deps-deploy for clojars.org deployment:
                   :deps/root "slim"}}
           :ns-default build}
   :test {:extra-paths ["test"]

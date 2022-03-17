@@ -15,3 +15,6 @@
       (bb/run-tests)
       (bb/clean)
       (bb/uber)))
+
+(defn clean "Clean target" [opts]
+  (bb/clean opts))
