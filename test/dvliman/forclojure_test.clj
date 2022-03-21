@@ -1,5 +1,6 @@
 (ns dvliman.forclojure-test
   (:require [clojure.test :refer :all]
+            [clojure.set]
             [dvliman.forclojure :as src]))
 
 (deftest problem-153-pairwise-disjoint-sets
@@ -70,3 +71,37 @@
                                 (fn [b]
                                   (* a b))))
                           5 5))))
+
+(deftest problem-161-subset-and-superset
+  (is (clojure.set/superset? #{1 2} #{2}))
+  (is (clojure.set/subset? #{1} #{1 2}))
+  (is (clojure.set/superset? #{1 2} #{1 2}))
+  (is (clojure.set/subset? #{1 2} #{1 2})))
+
+(deftest problem-166-comparisons
+  (is (= :gt (src/problem-166 < 5 1)))
+  (is (= :eq (src/problem-166 (fn [x y] (< (count x) (count y))) "pear" "plum")))
+  (is (= :lt (src/problem-166 (fn [x y] (< (mod x 5) (mod y 5))) 21 3)))
+  (is (= :gt (src/problem-166 > 0 2))))
+
+(deftest problem-171-intervals
+  (is (= (src/problem-171 [1 2 3]) [[1 3]]))
+  (is (= (src/problem-171 [10 9 8 1 2 3]) [[1 3] [8 10]]))
+  (is (= (src/problem-171 [1 1 1 1 1 1 1]) [[1 1]]))
+  (is (= (src/problem-171 []) []))
+  (is (= (src/problem-171 [19 4 17 1 3 10 2 13 13 2 16 4 2 15 13 9 6 14 2 11])
+                      [[1 4] [6 6] [9 11] [13 17] [19 19]])))
+
+(deftest problem-177
+  (is (src/problem-177 "This string has no brackets."))
+  (is (src/problem-177 "class Test {
+                          public static void main(String[] args) {
+                            System.out.println(\"Hello world.\");
+                          }
+                        }"))
+  (is (not (src/problem-177 "(start, end]")))
+  (is (not (src/problem-177 "())")))
+  (is (not (src/problem-177 "[ { ] } ")))
+  (is (src/problem-177 "([]([(()){()}(()(()))(([[]]({}()))())]((((()()))))))"))
+  (is (not (src/problem-177 "([]([(()){()}(()(()))(([[]]({}([)))())]((((()()))))))")))
+  (is (not (src/problem-177 "["))))
