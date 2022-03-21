@@ -22,6 +22,11 @@
     true
     false))
 
+;; oscilrate: https://4clojure.oxal.org/#/problem/144
+(defn problem-144 [x & fs]
+  (reductions (fn [acc f]
+                (f acc)) x (cycle fs)))
+
 (defn problem-156 [default ks]
   (zipmap ks (repeat (count ks) default)))
 
