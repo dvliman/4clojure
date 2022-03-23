@@ -27,27 +27,32 @@
   (reductions (fn [acc f]
                 (f acc)) x (cycle fs)))
 
+;; map defaults: https://4clojure.oxal.org/#/problem/156
 (defn problem-156 [default ks]
   (zipmap ks (repeat (count ks) default)))
 
+;; indexing sequences: https://4clojure.oxal.org/#/problem/157
 (defn problem-157 [coll]
   (map-indexed (fn [index item]
                  [item index]) coll))
 
+;; decurry: https://4clojure.oxal.org/#/problem/158
 (defn problem-158 [f]
   (fn [& args]
     (reduce #(%1 %2) f args)))
 
+;; subset and superset: https://4clojure.oxal.org/#/problem/161
 (defn problem-161 [f]
   (fn [& args]
     (reduce #(%1 %2) f args)))
 
-
+;; comparisons: https://4clojure.oxal.org/#/problem/166
 (defn problem-166 [< x y]
   (cond (< x y) :lt
         (< y x) :gt
         :else   :eq))
 
+;; intervals: https://4clojure.oxal.org/#/problem/171
 (defn problem-171 [xs]
   (let [xs (-> xs sort distinct)
         result (reduce (fn [[acc start llast] x]
@@ -58,6 +63,7 @@
       []
       (conj (first result) [(second result) (last result)]))))
 
+;; balancing bracket: https://4clojure.oxal.org/#/problem/177
 (defn problem-177 [s]
   (empty? (let [to-keep #{\{ \} \( \) \[ \]}
                   candidates (filter #(contains? to-keep %) (seq s))]

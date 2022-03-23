@@ -97,7 +97,7 @@
   (is (= (src/problem-171 [19 4 17 1 3 10 2 13 13 2 16 4 2 15 13 9 6 14 2 11])
                       [[1 4] [6 6] [9 11] [13 17] [19 19]])))
 
-(deftest problem-177
+(deftest problem-177-balancing-brackets
   (is (src/problem-177 "This string has no brackets."))
   (is (src/problem-177 "class Test {
                           public static void main(String[] args) {
