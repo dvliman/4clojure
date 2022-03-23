@@ -16,6 +16,13 @@
                                         :same)))))
   (is (= '(1 :less 6 :less 7 4 3) (src/problem-132 < :less [1 6 7 4 3]))))
 
+(deftest problem-137-digits-and-bases
+  (is (= [1 2 3 4 5 0 1] (src/problem-137 1234501 10)))
+  (is (= [0] (src/problem-137 0 11)))
+  (is (= [1 0 0 1] (src/problem-137 9 2)))
+  (is (= [1 0] (let [n (rand-int 100000)] (src/problem-137 n n))))
+  #_(is (= [22 6 10 5 0 19 6 9 6 31] (src/problem-137 js/Number.MAX_SAFE_INTEGER 42))))
+
 (deftest problem-144-oscilrate
   (is (= (take 3 (src/problem-144 3.14 int double)) [3.14 3 3.0]))
   (is (= (take 5 (src/problem-144 3 #(- % 3) #(+ 5 %))) [3 0 5 2 7]))

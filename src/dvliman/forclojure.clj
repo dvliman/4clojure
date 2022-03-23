@@ -29,6 +29,12 @@
 
        :else []))))
 
+;; digits and bases: https://4clojure.oxal.org/#/problem/137
+(defn problem-137 [n base]
+  (if (zero? (quot n base))
+    [n]
+    (concat (problem-137 (quot n base) base) [(mod n base)])))
+
 (defn problem-153 [ss]
   (if (seq (reduce (fn [acc s]
                      (if (seq (clojure.set/intersection acc s))
