@@ -23,6 +23,12 @@
   (is (= [1 0] (let [n (rand-int 100000)] (src/problem-137 n n))))
   #_(is (= [22 6 10 5 0 19 6 9 6 31] (src/problem-137 js/Number.MAX_SAFE_INTEGER 42))))
 
+(deftest problem-143-dot-product
+  (is (= 0 (src/problem-143 [0 1 0] [1 0 0])))
+  (is (= 3 (src/problem-143 [1 1 1] [1 1 1])))
+  (is (= 32 (src/problem-143 [1 2 3] [4 5 6])))
+  (is (= 256 (src/problem-143 [2 5 6] [100 10 1]))))
+
 (deftest problem-144-oscilrate
   (is (= (take 3 (src/problem-144 3.14 int double)) [3.14 3 3.0]))
   (is (= (take 5 (src/problem-144 3 #(- % 3) #(+ 5 %))) [3 0 5 2 7]))

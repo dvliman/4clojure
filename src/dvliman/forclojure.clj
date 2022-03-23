@@ -35,6 +35,11 @@
     [n]
     (concat (problem-137 (quot n base) base) [(mod n base)])))
 
+;; dot product: https://4clojure.oxal.org/#/problem/143
+(defn problem-143 [c1 c2]
+  (reduce + (map * c1 c2)))
+
+;; pairwise disjoint sets: https://4clojure.oxal.org/#/problem/153
 (defn problem-153 [ss]
   (if (seq (reduce (fn [acc s]
                      (if (seq (clojure.set/intersection acc s))
