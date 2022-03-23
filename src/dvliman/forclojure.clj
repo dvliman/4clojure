@@ -1,18 +1,18 @@
 (ns dvliman.forclojure)
 
 ;; levenshtein distance: https://4clojure.oxal.org/#/problem/101
-(def levenshtein
-  (memoize (fn [x y i j]
-             (if (zero? (min i j))
-               (max i j)
-               (min (+ 1 (levenshtein x y (dec i) j))
-                    (+ 1 (levenshtein x y i (dec j)))
-                    (+ (if (= (nth (seq x) (dec i))
-                              (nth (seq y) (dec j)))
-                         0 1) (levenshtein x y (dec i) (dec j))))))))
-
 (defn problem-101 [x y]
-  (levenshtein x y (count x) (count y)))
+  (with-local-vars
+   [levenshtein
+    (memoize (fn [x y i j]
+               (if (zero? (min i j))
+                 (max i j)
+                 (min (+ 1 (levenshtein x y (dec i) j))
+                      (+ 1 (levenshtein x y i (dec j)))
+                      (+ (if (= (nth (seq x) (dec i))
+                                (nth (seq y) (dec j)))
+                           0 1) (levenshtein x y (dec i) (dec j)))))))]
+    (levenshtein x y (count x) (count y))))
 
 ;; product digits: https://4clojure.oxal.org/#/problem/99
 (defn problem-99 [x y]
