@@ -3,6 +3,19 @@
             [clojure.set]
             [dvliman.forclojure :as src]))
 
+(deftest problem-132-intervals
+  (is (= '(2) (src/problem-132 > :more [2])))
+  (is (= [0 1 :x 2 :x 3 :x 4]  (src/problem-132 #(and (pos? %) (< % %2)) :x (range 5))))
+  (is (empty? (src/problem-132 > :more ())))
+  (is (= [0 1 :same 1 2 3 :same 5 8 13 :same 21]
+                      (take 12 (->> [0 1]
+                                    (iterate (fn [[a b]] [b (+ a b)]))
+                                    (map first) ; fibonacci numbers
+                                    (src/problem-132 (fn [a b] ; both even or both odd
+                                          (= (mod a 2) (mod b 2)))
+                                        :same)))))
+  (is (= '(1 :less 6 :less 7 4 3) (src/problem-132 < :less [1 6 7 4 3]))))
+
 (deftest problem-144-oscilrate
   (is (= (take 3 (src/problem-144 3.14 int double)) [3.14 3 3.0]))
   (is (= (take 5 (src/problem-144 3 #(- % 3) #(+ 5 %))) [3 0 5 2 7]))

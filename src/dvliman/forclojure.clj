@@ -13,6 +13,22 @@
       (recur (/ n b) (+ (* palin b) (mod n b)))
       palin)))
 
+;; intervals: https://4clojure.oxal.org/#/problem/132
+(defn problem-132 [pred value coll]
+  (let [a (first coll)
+        b (second coll)]
+    (lazy-seq
+     (cond
+       (and (number? a) (number? b))
+       (if (pred a b)
+         (concat [a value] (problem-132 pred value (rest coll)))
+         (concat [a] (problem-132 pred value (rest coll))))
+
+       (and (number? a) (nil? b))
+       [a]
+
+       :else []))))
+
 (defn problem-153 [ss]
   (if (seq (reduce (fn [acc s]
                      (if (seq (clojure.set/intersection acc s))
