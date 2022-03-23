@@ -3,6 +3,11 @@
             [clojure.set]
             [dvliman.forclojure :as src]))
 
+(deftest problem-99-product-digits
+  (is (= (src/problem-99 1 1) [1]))
+  (is (= (src/problem-99 99 9) [8 9 1]))
+  (is (= (src/problem-99 999 99) [9 8 9 0 1])))
+
 (deftest problem-132-intervals
   (is (= '(2) (src/problem-132 > :more [2])))
   (is (= [0 1 :x 2 :x 3 :x 4]  (src/problem-132 #(and (pos? %) (< % %2)) :x (range 5))))

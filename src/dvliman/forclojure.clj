@@ -13,6 +13,13 @@
       (recur (/ n b) (+ (* palin b) (mod n b)))
       palin)))
 
+(defn problem-99 [x y]
+  (let [digits (defn digits [n base]
+                 (if (zero? (quot n base))
+                   [n]
+                   (concat (digits (quot n base) base) [(mod n base)])))]
+    (digits (* x y) 10)))
+
 ;; intervals: https://4clojure.oxal.org/#/problem/132
 (defn problem-132 [pred value coll]
   (let [a (first coll)
