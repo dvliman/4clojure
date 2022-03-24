@@ -3,12 +3,33 @@
             [clojure.set]
             [dvliman.forclojure :as src]))
 
+(deftest problem-19-last-element
+  (is (= (src/problem-19 [1 2 3 4 5]) 5))
+  (is (= (src/problem-19 '(5 4 3)) 3))
+  (is (= (src/problem-19 ["b" "c" "d"]) "d")))
+
+(deftest problem-43-reverse-interleave
+  (is (= (src/problem-43 [1 2 3 4 5 6] 2) '((1 3 5) (2 4 6))))
+  (is (= (src/problem-43 (range 9) 3) '((0 3 6) (1 4 7) (2 5 8))))
+  (is (= (src/problem-43 (range 10) 5) '((0 5) (1 6) (2 7) (3 8) (4 9)))))
+
 (deftest problem-44-rotate-sequence
   (is (= (src/problem-44 2 [1 2 3 4 5]) '(3 4 5 1 2)))
   (is (= (src/problem-44 -2 [1 2 3 4 5]) '(4 5 1 2 3)))
   (is (= (src/problem-44 6 [1 2 3 4 5]) '(2 3 4 5 1)))
   (is (= (src/problem-44 1 '(:a :b :c)) '(:b :c :a)))
   (is (= (src/problem-44 -4 '(:a :b :c)) '(:c :a :b))))
+
+(deftest problem-46-flipping-out
+  (is (= 3 ((src/problem-46 nth) 2 [1 2 3 4 5])))
+  (is (= true ((src/problem-46 >) 7 8)))
+  (is (= 4 ((src/problem-46 quot) 2 8)))
+  (is (= [1 2 3] ((src/problem-46 take) [1 2 3 4 5] 3))))
+
+(deftest problem-50-split-by-type
+  (is (= (set (src/problem-50 [1 :a 2 :b 3 :c])) #{[1 2 3] [:a :b :c]}))
+  (is (= (set (src/problem-50 [:a "foo"  "bar" :b])) #{[:a :b] ["foo" "bar"]}))
+  (is (= (set (src/problem-50 [[1 2] :a [3 4] 5 6 :b])) #{[[1 2] [3 4]] [:a :b] [5 6]})))
 
 (deftest problem-99-product-digits
   (is (= (src/problem-99 1 1) [1]))

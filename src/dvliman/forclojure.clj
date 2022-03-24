@@ -24,6 +24,18 @@
 (defn problem-50 [coll]
   (vals (group-by type coll)))
 
+;; reverse interleave: https://4clojure.oxal.org/#/problem/43
+(defn problem-53 [xs n]
+  (reduce (fn [acc x]
+            (let [pos (mod (nth x 0) n)
+                  l1  (nth acc pos)
+                  l2  (concat l1 [(nth x 1)])]
+              (assoc acc pos l2)))
+          (repeat n '())
+          (map-indexed list xs)))
+
+(problem-53 [1 2 3 4 5 6] 2)
+
 ;; levenshtein distance: https://4clojure.oxal.org/#/problem/101
 (defn problem-101 [x y]
   (with-local-vars
