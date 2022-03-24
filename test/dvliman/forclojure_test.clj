@@ -3,6 +3,13 @@
             [clojure.set]
             [dvliman.forclojure :as src]))
 
+(deftest problem-44-rotate-sequence
+  (is (= (src/problem-44 2 [1 2 3 4 5]) '(3 4 5 1 2)))
+  (is (= (src/problem-44 -2 [1 2 3 4 5]) '(4 5 1 2 3)))
+  (is (= (src/problem-44 6 [1 2 3 4 5]) '(2 3 4 5 1)))
+  (is (= (src/problem-44 1 '(:a :b :c)) '(:b :c :a)))
+  (is (= (src/problem-44 -4 '(:a :b :c)) '(:c :a :b))))
+
 (deftest problem-99-product-digits
   (is (= (src/problem-99 1 1) [1]))
   (is (= (src/problem-99 99 9) [8 9 1]))

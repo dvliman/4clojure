@@ -1,5 +1,29 @@
 (ns dvliman.forclojure)
 
+;; last element: https://4clojure.oxal.org/#/problem/19
+(defn problem-19 [coll]
+  (nth coll (dec (count coll))))
+
+;; rotate sequence: https://4clojure.oxal.org/#/problem/44
+(defn problem-44 [n xs]
+  (let [len (count xs)
+        r   (rem n len)
+        x   (if (pos? r) r (+ len r))]
+    (concat (drop x xs) (take x xs))))
+
+;; intro to iterate: https://4clojure.oxal.org/#/problem/45
+(defn problem-45 []
+  (= '(1 4 7 10 13) (take 5 (iterate #(+ 3 %) 1))))
+
+;; flipping out: https://4clojure.oxal.org/#/problem/46
+(defn problem-46 [f]
+  (fn [index coll]
+    (f coll index)))
+
+;; split by type: https://4clojure.oxal.org/#/problem/50
+(defn problem-50 [coll]
+  (vals (group-by type coll)))
+
 ;; levenshtein distance: https://4clojure.oxal.org/#/problem/101
 (defn problem-101 [x y]
   (with-local-vars
