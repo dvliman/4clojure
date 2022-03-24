@@ -46,6 +46,15 @@
   (is (= (src/problem-101 '"ttttattttctg" "tcaaccctaccat") 10))
   (is (= (src/problem-101 '"gaattctaatctc" "caaacaaaaaattt") 9)))
 
+(deftest problem-122-read-a-binary-number
+  (is (= 0 (src/problem-122 "0")))
+  (is (= 7 (src/problem-122 "111")))
+  (is (= 8 (src/problem-122 "1000")))
+  (is (= 9 (src/problem-122 "1001")))
+  (is (= 255 (src/problem-122 "11111111")))
+  (is (= 1365 (src/problem-122 "10101010101")))
+  (is (= 65535 (src/problem-122 "1111111111111111"))))
+
 (deftest problem-132-intervals
   (is (= '(2) (src/problem-132 > :more [2])))
   (is (= [0 1 :x 2 :x 3 :x 4]  (src/problem-132 #(and (pos? %) (< % %2)) :x (range 5))))

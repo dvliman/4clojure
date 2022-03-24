@@ -34,7 +34,13 @@
           (repeat n '())
           (map-indexed list xs)))
 
-(problem-53 [1 2 3 4 5 6] 2)
+;; product digits: https://4clojure.oxal.org/#/problem/99
+(defn problem-99 [x y]
+  (let [digits (defn digits [n base]
+                 (if (zero? (quot n base))
+                   [n]
+                   (concat (digits (quot n base) base) [(mod n base)])))]
+    (digits (* x y) 10)))
 
 ;; levenshtein distance: https://4clojure.oxal.org/#/problem/101
 (defn problem-101 [x y]
@@ -50,13 +56,12 @@
                            0 1) (levenshtein x y (dec i) (dec j)))))))]
     (levenshtein x y (count x) (count y))))
 
-;; product digits: https://4clojure.oxal.org/#/problem/99
-(defn problem-99 [x y]
-  (let [digits (defn digits [n base]
-                 (if (zero? (quot n base))
-                   [n]
-                   (concat (digits (quot n base) base) [(mod n base)])))]
-    (digits (* x y) 10)))
+;; read a binary number: https://4clojure.oxal.org/#/problem/122
+(defn problem-122 [binary]
+  (int (reduce + (map-indexed (fn [index item]
+                                (Math/floor (* (Math/pow 2 index)
+                                               (Integer/parseInt (str item)))))
+                              (reverse (seq binary))))))
 
 ;; intervals: https://4clojure.oxal.org/#/problem/132
 (defn problem-132 [pred value coll]
