@@ -63,6 +63,19 @@
                                                (Integer/parseInt (str item)))))
                               (reverse (seq binary))))))
 
+;; through the Looking Class: https://4clojure.oxal.org/#/problem/126
+(def problem-126 (let [x java.lang.Class]
+                   (and (= (class x) x) x)))
+
+;; recognize playing cards: https://4clojure.oxal.org/#/problem/128
+(defn problem-128 [x]
+  (let [suites        {"D" :diamond "H" :heart "C" :club "S" :spade}
+        special-ranks {"J" 9 "Q" 10 "K" 11 "A" 12 "T" 8}
+        ranks (merge (zipmap (map str (range 2 11)) (range))
+                     special-ranks)
+        [suit rank] x]
+    {:suit (get suites suit) :rank (get ranks rank)}))
+
 ;; intervals: https://4clojure.oxal.org/#/problem/132
 (defn problem-132 [pred value coll]
   (let [a (first coll)

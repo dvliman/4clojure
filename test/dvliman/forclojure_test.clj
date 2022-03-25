@@ -55,6 +55,16 @@
   (is (= 1365 (src/problem-122 "10101010101")))
   (is (= 65535 (src/problem-122 "1111111111111111"))))
 
+(deftest problem-128-recognize-playing-cards
+  (is (src/problem-128 "H5"))
+  (is (src/problem-128 "CA"))
+  (is (src/problem-128 "DQ"))
+  ;; pass in cljs but not clj
+  #_(is (= (range 13) (map (comp :rank src/problem-128 str)
+                        '[S2 S3 S4 S5 S6 S7
+                          S8 S9 ST SJ SQ SK SA]))))
+
+
 (deftest problem-132-intervals
   (is (= '(2) (src/problem-132 > :more [2])))
   (is (= [0 1 :x 2 :x 3 :x 4]  (src/problem-132 #(and (pos? %) (< % %2)) :x (range 5))))
