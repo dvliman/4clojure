@@ -69,12 +69,20 @@
 
 ;; recognize playing cards: https://4clojure.oxal.org/#/problem/128
 (defn problem-128 [x]
-  (let [suites        {"D" :diamond "H" :heart "C" :club "S" :spade}
-        special-ranks {"J" 9 "Q" 10 "K" 11 "A" 12 "T" 8}
-        ranks (merge (zipmap (map str (range 2 11)) (range))
+  (let [suites        {\D :diamond \H :heart \C :club \S :spade}
+        special-ranks {\J 9 \Q 10 \K 11 \A 12 \T 8}
+        ranks (merge (zipmap (map char (range 2 11)) (range))
                      special-ranks)
         [suit rank] x]
     {:suit (get suites suit) :rank (get ranks rank)}))
+
+;; sum some set subsets: https://4clojure.oxal.org/#/problem/131
+(defn problem-131 [& coll]
+  (let [powerset (fn powerset [coll]
+                   (reduce (fn [acc x]
+                             (concat acc (map #(conj % x) acc))) #{#{}} coll))]
+    (not (empty? (apply clojure.set/intersection (map (fn [xss]
+                                                        (set (map #(reduce + %) (remove empty? xss)))) (map powerset coll)))))))
 
 ;; intervals: https://4clojure.oxal.org/#/problem/132
 (defn problem-132 [pred value coll]

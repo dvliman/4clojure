@@ -64,6 +64,31 @@
                         '[S2 S3 S4 S5 S6 S7
                           S8 S9 ST SJ SQ SK SA]))))
 
+(deftest problem-131-sum-some-set-subsets
+  (is (= true (src/problem-131 #{-1 1 99}
+                           #{-2 2 888}
+                           #{-3 3 7777})))
+  (is (= false (src/problem-131 #{1}
+                            #{2}
+                            #{3}
+                            #{4})))
+  (is (= true  (src/problem-131 #{1})))
+  (is (= false (src/problem-131 #{1 -3 51 9}
+                            #{0}
+                            #{9 2 81 33})))
+  (is (= true  (src/problem-131 #{1 3 5}
+                            #{9 11 4}
+                            #{-3 12 3}
+                            #{-3 4 -2 10})))
+  (is (= false (src/problem-131 #{-1 -2 -3 -4 -5 -6}
+                            #{1 2 3 4 5 6 7 8 9})))
+  (is (= true  (src/problem-131 #{1 3 5 7}
+                            #{2 4 6 8})))
+  (is (= true  (src/problem-131 #{-1 3 -5 7 -9 11 -13 15}
+                            #{1 -3 5 -7 9 -11 13 -15}
+                            #{1 -1 2 -2 4 -4 8 -8})))
+  (is (= true  (src/problem-131 #{-10 9 -8 7 -6 5 -4 3 -2 1}
+                            #{10 -9 8 -7 6 -5 4 -3 2 -1}))))
 
 (deftest problem-132-intervals
   (is (= '(2) (src/problem-132 > :more [2])))
