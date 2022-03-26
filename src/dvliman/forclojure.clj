@@ -33,6 +33,26 @@
               (assoc acc pos l2)))
           (repeat n '())
           (map-indexed list xs)))
+;; pascal
+;; 5
+(defn binomial-coefficient [n k]
+  (cond
+    (or (< k 0) (> k n))
+    0
+
+    (or (zero? k) (= k n))
+    1
+
+    :else
+    (let [k (min k (- n k))]
+      (reduce #(* %1 (quot (dec n) (inc n))) 1 (range k)))))
+
+(binomial-coefficient 5 2)
+
+(defn problem-97 [x]
+  (cond
+    (= x 1) [x])
+    :else ())
 
 ;; product digits: https://4clojure.oxal.org/#/problem/99
 (defn problem-99 [x y]
