@@ -47,7 +47,6 @@
                      (flatten
                       [1 (map + y (rest y)) 1]))))))
 
-
 ;; product digits: https://4clojure.oxal.org/#/problem/99
 (defn problem-99 [x y]
   (let [digits (defn digits [n base]
@@ -69,6 +68,16 @@
                                 (nth (seq y) (dec j)))
                            0 1) (levenshtein x y (dec i) (dec j)))))))]
     (levenshtein x y (count x) (count y))))
+
+;; sequences of pronounciation: https://4clojure.oxal.org/#/problem/110
+(defn problem-110 [xs]
+  (lazy-seq
+   (let [new (flatten (map #(apply vector (clojure.set/map-invert (frequencies %))) (partition-by identity xs)))]
+     (concat [new] (problem-110 new)))))
+
+(defn problem-110-cleaner [xs]
+  (let [ys (mapcat (juxt count first) (partition-by identity xs))]
+    (lazy-cat [ys] (problem-110-cleaner ys))))
 
 ;; re-implement map: https://4clojure.oxal.org/#/problem/118
 (defn problem-118 [f coll]
