@@ -56,6 +56,10 @@
                            0 1) (levenshtein x y (dec i) (dec j)))))))]
     (levenshtein x y (count x) (count y))))
 
+;; re-implement map: https://4clojure.oxal.org/#/problem/118
+(defn problem-118 [f coll]
+  (rest (reductions #(f %2) (cons identity coll))))
+
 ;; read a binary number: https://4clojure.oxal.org/#/problem/122
 (defn problem-122 [binary]
   (int (reduce + (map-indexed (fn [index item]

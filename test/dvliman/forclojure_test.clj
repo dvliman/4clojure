@@ -46,6 +46,19 @@
   (is (= (src/problem-101 '"ttttattttctg" "tcaaccctaccat") 10))
   (is (= (src/problem-101 '"gaattctaatctc" "caaacaaaaaattt") 9)))
 
+(deftest problem-118-reimplementing-map
+  (is (problem-118 inc [2 3 4 5 6]))
+  (is (= (repeat 10 nil)
+         (problem-118 (fn [_] nil) (range 10))))
+  (is ((= [1000000 1000001]
+          (->> (problem-118 inc (range))
+               (drop (dec 1000000))
+               (take 2)))))
+  (is (= [1000000 1000001]
+         (->> (problem-118 inc (range))
+              (drop (dec 1000000))
+              (take 2)))))
+
 (deftest problem-122-read-a-binary-number
   (is (= 0 (src/problem-122 "0")))
   (is (= 7 (src/problem-122 "111")))
