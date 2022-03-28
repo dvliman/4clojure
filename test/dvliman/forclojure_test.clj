@@ -66,13 +66,13 @@
   (is (= 338 (count (nth (src/problem-110 [3 2]) 15)))))
 
 (deftest problem-118-reimplementing-map
-  (is (src/problem-118 inc [2 3 4 5 6]))
+  (is (= [3 4 5 6 7] (src/problem-118 inc [2 3 4 5 6])))
   (is (= (repeat 10 nil)
          (src/problem-118 (fn [_] nil) (range 10))))
-  (is ((= [1000000 1000001]
-          (->> (src/problem-118 inc (range))
-               (drop (dec 1000000))
-               (take 2)))))
+  (is (= [1000000 1000001]
+         (->> (src/problem-118 inc (range))
+              (drop (dec 1000000))
+              (take 2))))
   (is (= [1000000 1000001]
          (->> (src/problem-118 inc (range))
               (drop (dec 1000000))

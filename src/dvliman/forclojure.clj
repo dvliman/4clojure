@@ -5,14 +5,8 @@
   (nth coll (dec (count coll))))
 
 ;; reverse interleave: https://4clojure.oxal.org/#/problem/43
-(defn problem-43 [xs n]
-  (reduce (fn [acc x]
-            (let [pos (mod (nth x 0) n)
-                  l1  (nth acc pos)
-                  l2  (concat l1 [(nth x 1)])]
-              (assoc acc pos l2)))
-          (repeat n '())
-          (map-indexed list xs)))
+(defn problem-43 [coll n]
+  (apply map list (partition n coll)))
 
 ;; rotate sequence: https://4clojure.oxal.org/#/problem/44
 (defn problem-44 [n xs]
