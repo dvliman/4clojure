@@ -77,6 +77,17 @@
 (defn problem-118 [f coll]
   (rest (reductions #(f %2) (cons identity coll))))
 
+
+;; sum of square of digits: https://4clojure.oxal.org/#/problem/120
+(defn problem-120 [coll]
+  (let [digits (defn digits [d]
+                 (if (zero? (quot d 10))
+                   [d]
+                   (concat (digits (quot d 10)) [(mod d 10)])))
+        pred (fn [n]
+               (< n (reduce + (map #(* % %) (digits n)))))]
+    (count (filter pred coll))))
+
 ;; read a binary number: https://4clojure.oxal.org/#/problem/122
 (defn problem-122 [binary]
   (int (reduce + (map-indexed (fn [index item]

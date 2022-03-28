@@ -78,6 +78,12 @@
               (drop (dec 1000000))
               (take 2)))))
 
+(deftest problem-120-sum-of-square-of-digits
+  (is (= 8 (src/problem-120 (range 10))))
+  (is (= 19 (src/problem-120 (range 30))))
+  (is (= 50 (src/problem-120 (range 100))))
+  (is (= 50 (src/problem-120 (range 1000)))))
+
 (deftest problem-122-read-a-binary-number
   (is (= 0 (src/problem-122 "0")))
   (is (= 7 (src/problem-122 "111")))
