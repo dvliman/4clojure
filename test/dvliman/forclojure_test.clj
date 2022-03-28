@@ -31,6 +31,19 @@
   (is (= (set (src/problem-50 [:a "foo"  "bar" :b])) #{[:a :b] ["foo" "bar"]}))
   (is (= (set (src/problem-50 [[1 2] :a [3 4] 5 6 :b])) #{[[1 2] [3 4]] [:a :b] [5 6]})))
 
+(deftest problem-97-pascal-triangle
+  (is (= (src/problem-97 1) [1]))
+  (is (= (map src/problem-97 (range 1 6))
+   [     [1]
+        [1 1]
+       [1 2 1]
+      [1 3 3 1]
+    [1 4 6 4 1]]))
+  (is (= (src/problem-97 11)
+         [1 10 45 120 210 252 210 120 45 10 1]))
+  (is (= (src/problem-97 11)
+         [1 10 45 120 210 252 210 120 45 10 1])))
+
 (deftest problem-99-product-digits
   (is (= (src/problem-99 1 1) [1]))
   (is (= (src/problem-99 99 9) [8 9 1]))
@@ -46,16 +59,22 @@
   (is (= (src/problem-101 '"ttttattttctg" "tcaaccctaccat") 10))
   (is (= (src/problem-101 '"gaattctaatctc" "caaacaaaaaattt") 9)))
 
+(deftest problem-110-sequences-of-pronounciation
+  (is (= [[1 1] [2 1] [1 2 1 1]] (take 3 (src/problem-110 [1]))))
+  (is (= [3 1 2 4] (first (src/problem-110[1 1 1 4 4]))))
+  (is (= [1 1 1 3 2 1 3 2 1 1] (nth (src/problem-110 [1]) 6)))
+  (is (= 338 (count (nth (src/problem-110 [3 2]) 15)))))
+
 (deftest problem-118-reimplementing-map
-  (is (problem-118 inc [2 3 4 5 6]))
+  (is (src/problem-118 inc [2 3 4 5 6]))
   (is (= (repeat 10 nil)
-         (problem-118 (fn [_] nil) (range 10))))
+         (src/problem-118 (fn [_] nil) (range 10))))
   (is ((= [1000000 1000001]
-          (->> (problem-118 inc (range))
+          (->> (src/problem-118 inc (range))
                (drop (dec 1000000))
                (take 2)))))
   (is (= [1000000 1000001]
-         (->> (problem-118 inc (range))
+         (->> (src/problem-118 inc (range))
               (drop (dec 1000000))
               (take 2)))))
 
