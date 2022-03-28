@@ -73,10 +73,22 @@
   (let [ys (mapcat (juxt count first) (partition-by identity xs))]
     (lazy-cat [ys] (problem-110-cleaner ys))))
 
+;; the balance of n: https://4clojure.oxal.org/#/problem/115
+(defn problem-115 [n]
+  (let [digits (defn digits [d]
+                 (if (zero? (quot d 10))
+                   [d]
+                   (concat (digits (quot d 10)) [(mod d 10)])))
+        components (digits n)
+        half (quot (count components) 2)
+        left-half  (take half components)
+        right-half (drop (if (even? (count components)) half (inc half)) components)]
+    (= (reduce + left-half)
+       (reduce + right-half))))
+
 ;; re-implement map: https://4clojure.oxal.org/#/problem/118
 (defn problem-118 [f coll]
   (rest (reductions #(f %2) (cons identity coll))))
-
 
 ;; sum of square of digits: https://4clojure.oxal.org/#/problem/120
 (defn problem-120 [coll]

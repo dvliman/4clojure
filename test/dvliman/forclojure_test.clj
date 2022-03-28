@@ -65,6 +65,17 @@
   (is (= [1 1 1 3 2 1 3 2 1 1] (nth (src/problem-110 [1]) 6)))
   (is (= 338 (count (nth (src/problem-110 [3 2]) 15)))))
 
+(deftest problem-115-the-balance-of-n
+  (is (= true (src/problem-115 11)))
+  (is (= true (src/problem-115 121)))
+  (is (= false (src/problem-115 123)))
+  (is (= true (src/problem-115 0)))
+  (is (= false (src/problem-115 88099)))
+  (is (= true (src/problem-115 89098)))
+  (is (= true (src/problem-115 89089)))
+  (is (= (take 20 (filter src/problem-115 (range)))
+         [0 1 2 3 4 5 6 7 8 9 11 22 33 44 55 66 77 88 99 101])))
+
 (deftest problem-118-reimplementing-map
   (is (= [3 4 5 6 7] (src/problem-118 inc [2 3 4 5 6])))
   (is (= (repeat 10 nil)
