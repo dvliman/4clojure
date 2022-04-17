@@ -63,6 +63,15 @@
                            0 1) (levenshtein x y (dec i) (dec j)))))))]
     (levenshtein x y (count x) (count y))))
 
+;; intoCamelCase: https://4clojure.oxal.org/#/problem/102
+(defn problem-102 [s]
+  (clojure.string/replace
+   s #"-(.)"
+   (fn [[a letter]]
+     (prn a ":" letter)
+     (.toUpperCase letter))))
+
+(problem-102 "multi-word-key")
 ;; sequences of pronounciation: https://4clojure.oxal.org/#/problem/110
 (defn problem-110 [xs]
   (lazy-seq
@@ -188,6 +197,8 @@
   (fn [& args]
     (reduce #(%1 %2) f args)))
 
+
+
 ;; comparisons: https://4clojure.oxal.org/#/problem/166
 (defn problem-166 [< x y]
   (cond (< x y) :lt
